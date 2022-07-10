@@ -4,14 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e427302-42ff-49ea-adb6-a080fec33384" name="Changes" comment="add intelliJ config">
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="3e427302-42ff-49ea-adb6-a080fec33384" name="Changes" comment="include gradle wrapper">
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/portfolio-core/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio-core/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/portfolio-core/src/main/java/org/salerno/datastructure/RandomLinkedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio-core/src/main/java/org/salerno/datastructure/RandomLinkedList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/portfolio-core/src/test/java/org/salerno/datastructure/RandomLinkedListTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio-core/src/test/java/org/salerno/datastructure/RandomLinkedListTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +23,28 @@
         <task path="$PROJECT_DIR$">
           <activation />
         </task>
-        <projects_view />
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="alex-salerno-portfolio" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="alex-salerno-portfolio" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="alex-salerno-portfolio" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build setup" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
       </state>
     </system>
   </component>
@@ -50,7 +65,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="Gradle.RandomLinkedListTest">
+  <component name="RunManager" selected="Gradle.alex-salerno-portfolio [wrapper]">
     <configuration name="RandomLinkedListTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -65,29 +80,6 @@
             <option value=":portfolio-core:test" />
             <option value="--tests" />
             <option value="&quot;org.salerno.datastructure.RandomLinkedListTest&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="RandomLinkedListTest.pushAndPop" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":portfolio-core:test" />
-            <option value="--tests" />
-            <option value="&quot;org.salerno.datastructure.RandomLinkedListTest.pushAndPop&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -166,13 +158,34 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <configuration name="alex-salerno-portfolio [wrapper]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="wrapper" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.alex-salerno-portfolio [wrapper]" />
         <item itemvalue="Gradle.RandomLinkedListTest" />
         <item itemvalue="Gradle.RandomLinkedListTest.shouldBeThreadSafe" />
         <item itemvalue="Gradle.RandomLinkedListTest.shouldHandleBadData" />
         <item itemvalue="Gradle.RandomLinkedListTest.shouldPushAndPop" />
-        <item itemvalue="Gradle.RandomLinkedListTest.pushAndPop" />
       </list>
     </recent_temporary>
   </component>
@@ -192,7 +205,35 @@
       <option name="project" value="LOCAL" />
       <updated>1657159339949</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="add intelliJ config">
+      <created>1657415257295</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1657415257295</updated>
+    </task>
+    <task id="LOCAL-00003" summary="linked list is now a queue, with tests">
+      <created>1657415304123</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1657415304123</updated>
+    </task>
+    <task id="LOCAL-00004" summary="include gradle wrapper">
+      <created>1657415449966</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1657415449966</updated>
+    </task>
+    <task id="LOCAL-00005" summary="include gradle wrapper">
+      <created>1657415794183</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1657415794183</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -208,6 +249,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add intelliJ config" />
-    <option name="LAST_COMMIT_MESSAGE" value="add intelliJ config" />
+    <MESSAGE value="linked list is now a queue, with tests" />
+    <MESSAGE value="include gradle wrapper" />
+    <option name="LAST_COMMIT_MESSAGE" value="include gradle wrapper" />
   </component>
 </project>
