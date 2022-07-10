@@ -1,4 +1,4 @@
-# alex-salerno-portfolio [![Java CI with Gradle](https://github.com/8bitAlex/alex-salerno-portfolio/actions/workflows/gradle.yml/badge.svg?branch=main)](https://github.com/8bitAlex/alex-salerno-portfolio/actions/workflows/gradle.yml)
+# alex-salerno-portfolio [![Test & Build](https://github.com/8bitAlex/alex-salerno-portfolio/actions/workflows/gradle.yml/badge.svg?branch=main)](https://github.com/8bitAlex/alex-salerno-portfolio/actions/workflows/gradle.yml)
 Portfolio of coding problems and solutions
 
 # Problems
