@@ -53,24 +53,26 @@ public class RandomLinkedList implements Iterable<String> {
         // create linked list
         Node head = null;
         Node current = null;
-        // for each tag, create a node and link it
-        for(String tag : tags) {
-            if(tag == null) continue;
-            if(head == null) {
-                head = new Node(tag);
-                current = head;
-                list.tail = head;
-            } else {
-                current.next = new Node(tag);
-                current = current.next;
-                list.tail = current;
+        synchronized(LOCK) {
+            length = 0;
+            // for each tag, create a node and link it
+            for(String tag : tags) {
+                length += 1;
+                if(tag == null) continue;
+                if(head == null) {
+                    head = new Node(tag);
+                    current = head;
+                    list.tail = head;
+                } else {
+                    current.next = new Node(tag);
+                    current = current.next;
+                    list.tail = current;
+                }
             }
-        }
 
-        if(head != null) {
-            list.head = head;
-            // randomly assign each node another node reference
-            synchronized (LOCK) {
+            if(head != null) {
+                list.head = head;
+                // randomly assign each node another node reference
                 for(Node node : head) {
                     node.reference = list.getRandomNode();
                 }
