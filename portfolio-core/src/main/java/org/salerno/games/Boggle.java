@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Stack;
 
 /**
- * Boggle Board Solver implementation for the Bungie SRE Programming Test
+ * Boggle Board Solver implementation
  * <br><br>
  * Boggle is a word game invented by Allan Turoff and originally distributed by Parker Brothers.
  * The game is played using a plastic grid of lettered dice, in which players look for words in
