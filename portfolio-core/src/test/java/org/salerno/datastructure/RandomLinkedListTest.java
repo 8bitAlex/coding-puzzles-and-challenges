@@ -18,12 +18,12 @@ public class RandomLinkedListTest {
         // verify list is in order
         for(String tag: TAGS) {
             assertNotNull(list);
-            assertSame(tag, list.get());
+            assertSame(tag, list.peek());
             assertNotNull(list.getReference());
             list = list.getNext();
         }
         // verify list is now empty
-        assertSame("", list.get());
+        assertSame("", list.peek());
     }
 
     @Test
@@ -33,9 +33,9 @@ public class RandomLinkedListTest {
         final RandomLinkedList listOne = RandomLinkedList.asList(TAGS);
         final String tag = listOne.pop();
         assertSame(TAGS[0], tag);
-        final int length = listOne.getLength();
+        final int length = listOne.size();
         listOne.push(PLANET_ONE);
-        assertSame(length+1, listOne.getLength());
+        assertSame(length+1, listOne.size());
         // verify order is maintained
         final RandomLinkedList listTwo = RandomLinkedList.asList(PLANET_ONE);
         listTwo.push(planetTwo);
@@ -77,7 +77,7 @@ public class RandomLinkedListTest {
         for(int i = 0; i < 100; i++) {
             assertNotNull(list);
             assertNotNull(copy);
-            assertSame(list.get(), copy.get());
+            assertSame(list.peek(), copy.peek());
             assertNotSame(list, copy);
             list = list.getNext();
             copy = copy.getNext();
@@ -88,17 +88,17 @@ public class RandomLinkedListTest {
     public void shouldHandleBadData() {
         // null
         RandomLinkedList list = RandomLinkedList.asList((String) null);
-        assertSame("", list.get());
+        assertSame("", list.peek());
         list.push(PLANET_ONE);
         list.push(null);
         assertSame(PLANET_ONE, list.pop());
         // empty array
         list = RandomLinkedList.asList(new String[3]);
-        assertSame("", list.get());
+        assertSame("", list.peek());
         // duplicate tags (Not awful but could cause issues)
         list = RandomLinkedList.asList(PLANET_ONE, PLANET_ONE, PLANET_ONE);
-        assertSame(PLANET_ONE, list.get());
-        assertSame(3, list.getLength());
+        assertSame(PLANET_ONE, list.peek());
+        assertSame(3, list.size());
     }
 
     @Test
@@ -117,8 +117,8 @@ public class RandomLinkedListTest {
             for(int i = 0; i<500; i++) {
                 final RandomLinkedList list = RandomLinkedList.asList(TAGS);
                 final RandomLinkedList copy = RandomLinkedList.duplicateList(list);
-                final int listLength = list.getLength();
-                final int copyLength = copy.getLength();
+                final int listLength = list.size();
+                final int copyLength = copy.size();
                 assertSame(listLength, copyLength);
                 list.push(PLANET_ONE);
                 assertNotNull(list.tail.getReference());

@@ -1,7 +1,5 @@
 package org.salerno.datastructure;
 
-import com.google.common.annotations.VisibleForTesting;
-
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Random;
@@ -9,30 +7,30 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * A singly linked list queue that contains references to random nodes within the list
+ * A singly-linked queue that contains references to random nodes within the list
  *
  * @author alex.salerno@me.com
- * @since July-2022
+ * @since Aug-2022
  */
 public class RandomLinkedList implements Iterable<String> {
 
     // data structure vars
-    @VisibleForTesting
+    /** the 'top' of the queue */
     Node head;
-    @VisibleForTesting
+    /** the 'bottom' of the queue */
     Node tail;
 
     // local cache
     private static final Lock LOCK = new ReentrantLock();
     private static final HashMap<String, Node> COPY_CACHE = new HashMap<>();
-    private static int length = -1;
+    private static int size = -1;
     private static Node currentNode = null;
 
     // constants
     /**
-     * Maximum recursive copy depth to prevent {@code StackOverflowError}
+     * Maximum recursive copy depth to prevent {@code StackOverflowError} and save memory
      */
-    private static final int MAX_COPY_DEPTH = 1000;
+    private static final int MAX_COPY_DEPTH = 500;
 
     /* ---------------------------------- Constructor Methods ---------------------------------- **/
 
@@ -44,7 +42,7 @@ public class RandomLinkedList implements Iterable<String> {
 
     /**
      * @param tags A collection of strings that identify a node in the list
-     * @return A singly linked list that contains references to random nodes within the list, may return {@code null}
+     * @return A singly linked list that contains references to random nodes within the list
      */
     public static RandomLinkedList asList(final String... tags) {
         final RandomLinkedList list = new RandomLinkedList(null);
@@ -53,30 +51,28 @@ public class RandomLinkedList implements Iterable<String> {
         // create linked list
         Node head = null;
         Node current = null;
-        synchronized(LOCK) {
-            length = 0;
-            // for each tag, create a node and link it
-            for(String tag : tags) {
-                length += 1;
-                if(tag == null) continue;
-                if(head == null) {
-                    head = new Node(tag);
-                    current = head;
-                    list.tail = head;
-                } else {
-                    current.next = new Node(tag);
-                    current = current.next;
-                    list.tail = current;
-                }
+        // for each tag, create a node and link it
+        for(String tag : tags) {
+            if(tag == null) continue;
+            if(head == null) {
+                head = new Node(tag);
+                current = head;
+                list.tail = head;
+            } else {
+                current.next = new Node(tag);
+                current = current.next;
+                list.tail = current;
             }
+        }
 
-            if(head != null) {
-                list.head = head;
-                // randomly assign each node another node reference
+        if(head != null) {
+            list.head = head;
+            // randomly assign each node another node reference
+            synchronized (LOCK) {
                 for(Node node : head) {
                     node.reference = list.getRandomNode();
                 }
-                clearLengthCache();
+                clearSizeCache();
             }
         }
         return list;
@@ -115,8 +111,11 @@ public class RandomLinkedList implements Iterable<String> {
         return result.substring(0,result.length()-2) + "]";
     }
 
-    public void push(final String string) {
-        final Node node = new Node(string);
+    /**
+     * @param tag Pushes the tag into the queue
+     */
+    public void push(final String tag) {
+        final Node node = new Node(tag);
         if(this.head == null) {
             this.head = node;
             this.tail = node;
@@ -126,10 +125,13 @@ public class RandomLinkedList implements Iterable<String> {
         }
         synchronized (LOCK) {
             node.reference = getRandomNode();
-            clearLengthCache();
+            clearSizeCache();
         }
     }
 
+    /**
+     * @return and removes the tag from the top of the queue
+     */
     public String pop() {
         if(this.head == null) return "";
         final String tag = this.head.tag;
@@ -137,27 +139,39 @@ public class RandomLinkedList implements Iterable<String> {
         return tag;
     }
 
-    public String get() {
+    /**
+     * @return the tag of the element at the head of the queue but does not remove it
+     */
+    public String peek() {
         if(this.head != null) return this.head.tag;
         return "";
     }
 
+    /**
+     * @return The next {@code Node} in the queue
+     */
     public RandomLinkedList getNext() {
         if(this.head != null) return new RandomLinkedList(this.head.next);
         return null;
     }
 
+    /**
+     * @return The {@code Node} that is referenced by this {@code Node}
+     */
     public RandomLinkedList getReference() {
         if(this.head != null) return new RandomLinkedList(this.head.reference);
         return null;
     }
 
-    public int getLength() {
+    /**
+     * @return The number of elements in the queue
+     */
+    public int size() {
         int result;
         synchronized (LOCK) {
-            this.calculateLength();
-            result = length;
-            clearLengthCache();
+            this.calculateSize();
+            result = size;
+            clearSizeCache();
         }
         return result;
     }
@@ -169,6 +183,7 @@ public class RandomLinkedList implements Iterable<String> {
      * <br><br>Java does not support tail-recursion so there is a maximum depth of {@code MAX_COPY_DEPTH}.
      * If the maximum depth is reached, current location is stored in cache {@code currentNode} and the recursion
      * stack frames are reset. The copy can be continued by calling {@code deepCopy} again with the cached {@code currentNode}.
+     * This also guarantees a small memory footprint.
      *
      * @param node The node to copy
      * @param depth The current recursive depth, compared to {@code MAX_COPY_DEPTH}
@@ -192,25 +207,25 @@ public class RandomLinkedList implements Iterable<String> {
      */
     private Node getRandomNode() {
         // get node total
-        if(length == -1) { this.calculateLength(); }
-        if(length == 0) return null;
+        if(size == -1) { this.calculateSize(); }
+        if(size == 0) return null;
         // select random node
         Node current = this.head;
         Random rand = new Random();
-        for(int i = rand.nextInt(length); i>0; i--) {
+        for(int i = rand.nextInt(size); i>0; i--) {
             current = current.next;
         }
         return current;
     }
 
     /**
-     * Calculates the length of the list and stores it in a cache
+     * Calculates the size of the list and stores it in a cache
      */
-    private void calculateLength() {
-        length = 0;
+    private synchronized void calculateSize() {
+        size = 0;
         if(this.head == null) return;
         for(Node ignored : this.head) {
-            length += 1;
+            size += 1;
         }
     }
 
@@ -222,13 +237,15 @@ public class RandomLinkedList implements Iterable<String> {
         currentNode = null;
     }
 
-    private static void clearLengthCache() {
-        length = -1;
+    private static void clearSizeCache() {
+        size = -1;
     }
 
     /* ---------------------------------- Node Class ---------------------------------- **/
 
-    @VisibleForTesting
+    /**
+     * A single element in the queue
+     */
     static class Node implements Iterable<Node> {
 
         // data structure vars
@@ -240,17 +257,14 @@ public class RandomLinkedList implements Iterable<String> {
             this.tag = tag;
         }
 
-        @VisibleForTesting
         Node getNext() {
             return next;
         }
 
-        @VisibleForTesting
         String getTag() {
             return tag;
         }
 
-        @VisibleForTesting
         Node getReference() {
             return reference;
         }
@@ -291,7 +305,7 @@ public class RandomLinkedList implements Iterable<String> {
 
     }
 
-    /* ---------------------------------- List Iterator ---------------------------------- **/
+    /* ---------------------------------- Node Iterator ---------------------------------- **/
 
     @Override
     public Iterator<String> iterator() {
