@@ -1,5 +1,7 @@
 # Coding Puzzles and Challenges
 
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/8bitalex/coding-puzzles-and-challenges/gradle.yml)
+
 Welcome to my curated collection of coding problems, data structures, and algorithmic challenges.
 
 This repository serves as both a **portfolio** and a **technical interview prep resource**.  
