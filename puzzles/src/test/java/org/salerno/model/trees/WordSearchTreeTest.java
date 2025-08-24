@@ -1,4 +1,4 @@
-package org.salerno.datastructure;
+package org.salerno.model.trees;
 
 import org.junit.jupiter.api.Test;
 
@@ -7,7 +7,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashSet;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class WordSearchTreeTest {
 

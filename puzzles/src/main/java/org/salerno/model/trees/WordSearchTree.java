@@ -1,4 +1,4 @@
-package org.salerno.datastructure;
+package org.salerno.model.trees;
 
 import java.util.HashMap;
 import java.util.HashSet;

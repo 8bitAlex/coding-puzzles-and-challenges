@@ -1,6 +1,6 @@
-package org.salerno.games;
+package org.salerno.puzzles.games;
 
-import org.salerno.datastructure.WordSearchTree;
+import org.salerno.model.trees.WordSearchTree;
 
 import java.awt.*;
 import java.util.HashSet;

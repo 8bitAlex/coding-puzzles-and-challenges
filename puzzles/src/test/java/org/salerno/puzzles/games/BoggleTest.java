@@ -1,4 +1,4 @@
-package org.salerno.games;
+package org.salerno.puzzles.games;
 
 import org.junit.jupiter.api.Test;
 

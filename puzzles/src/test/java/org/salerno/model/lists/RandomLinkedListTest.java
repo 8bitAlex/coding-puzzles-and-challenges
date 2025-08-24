@@ -1,4 +1,4 @@
-package org.salerno.datastructure;
+package org.salerno.model.lists;
 
 import org.junit.jupiter.api.Test;
 
