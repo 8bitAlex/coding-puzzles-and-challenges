@@ -9,7 +9,7 @@ package org.salerno.puzzles.array;
  *
  * <p><b>Approach</b>: Sliding Window
  *
- * <p><b>Time</b>: O(n+k) <b>Space</b>: O(1)
+ * <p><b>Time</b>: O(n) <b>Space</b>: O(1)
  *
  * <p><a href="https://leetcode.com/problems/maximum-average-subarray-i/">Source</a>
  */
