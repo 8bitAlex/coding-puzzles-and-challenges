@@ -18,20 +18,18 @@ public class MaxAvgSubarray {
     public static double solve(int[] nums, int k) {
         if(k < 1 || nums.length == 0 || k > nums.length) return 0.0;
 
-        double max = Double.NEGATIVE_INFINITY;
-        double sum = 0.0;
-        for(int i = 0; i+k <= nums.length; i++) {
-            if(i == 0) {
-                for(int j = 0; j < k; j++) {
-                    sum += nums[j];
-                }
-            } else {
-                sum -= nums[i-1];
-                sum += nums[i+k-1];
-            }
-            max = Math.max(max, sum/k);
+        int sum = 0;
+        for(int i = 0; i < k; i++) {
+            sum += nums[i];
         }
-        return max;
+        
+        int max = sum;
+        for(int i = k; i < nums.length; i++) {
+            sum = sum - nums[i-k] + nums[i];
+            max = Math.max(max, sum);
+        }
+        
+        return (double) max / k;
     }
 
 }
