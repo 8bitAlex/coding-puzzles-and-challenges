@@ -15,19 +15,16 @@ cd puzzles
 ./gradlew jmh
 ```
 
+### Quick benchmark with console output:
+```bash
+./benchmark.sh
+```
+
 ## Results
 
 Benchmark results are saved in the `benchmark-results/` directory with timestamps:
 - JSON format: Detailed JMH results
 - Summary files: Human-readable summaries
-
-## Benchmark Structure
-
-### MaxAvgSubarrayBenchmark
-Tests the `MaxAvgSubarray.solve()` method with different parameters:
-- **Array sizes**: 100, 1,000, 10,000, 100,000 elements
-- **Window sizes (k)**: 10, 100, 1,000
-- **Metrics**: Average execution time in microseconds
 
 ## Configuration
 
@@ -36,12 +33,6 @@ JMH settings in `puzzles/build.gradle`:
 - Measurement iterations: 5
 - Fork count: 1
 - Output format: JSON
-
-## Adding New Benchmarks
-
-1. Create a new benchmark class in `puzzles/src/jmh/java/`
-2. Extend the existing benchmark pattern
-3. Add to the benchmark script if needed
 
 ## Best Practices
 
