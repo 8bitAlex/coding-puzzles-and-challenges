@@ -33,4 +33,14 @@ jmh {
     fork = 1
     failOnError = true
     resultFormat = 'JSON'
+    sourceSets {
+        jmh {
+            java {
+                srcDirs = ['src/jmh/java']
+            }
+            resources {
+                srcDirs = ['src/jmh/resources']
+            }
+        }
+    }
 }
