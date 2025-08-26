@@ -6,16 +6,16 @@ import org.openjdk.jmh.infra.Blackhole;
 import java.util.concurrent.TimeUnit;
 
 @BenchmarkMode(Mode.AverageTime)
-@OutputTimeUnit(TimeUnit.NANOSECONDS)
+@OutputTimeUnit(TimeUnit.MICROSECONDS)
 public class MaxAvgSubarrayBenchmark {
 
     @State(Scope.Thread)
     public static class BenchmarkState {
 
-        @Param({"100", "1000", "10000", "100000"})
+        @Param({"100", "1000", "10000", "100000", "1000000"})
         private int arraySize;
 
-        @Param({"10", "100", "1000"})
+        @Param({"10", "100", "1000", "10000"})
         private int k;
 
         private int[] nums;
@@ -35,8 +35,9 @@ public class MaxAvgSubarrayBenchmark {
         double result = MaxAvgSubarray.solve(state.nums, state.k);
         bh.consume(result);
     }
-    
+
     @Benchmark
+    @OutputTimeUnit(TimeUnit.NANOSECONDS)
     public void baseline(BenchmarkState state, Blackhole bh) {
         // Baseline to measure overhead
         bh.consume(state.nums.length);

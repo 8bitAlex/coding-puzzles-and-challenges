@@ -19,37 +19,37 @@ You can find more information on my [Personal Website](https://www.alexsalerno.d
 
 ## Getting Started
 
-Import into IntelliJ IDEA (Gradle project) to explore interactively
+Import into [IntelliJ IDEA](https://www.jetbrains.com/idea/download/) (Gradle project) to explore interactively
 
 ### Requirements
 - Java 17+
 - Gradle
 - (Optional) IntelliJ IDEA for development
 
-### Tests
+## Testing
 This repository uses JUnit for unit testing.
 
-#### Run all unit tests
+### Run all unit tests
   ```bash
   ./gradlew test 
   ```
 
-### Benchmarks
+## Benchmarks
 This repository uses JMH (Java Microbenchmark Harness) for performance testing and benchmarking.
 
-#### Run all benchmarks
+### Run all benchmarks
   ```bash
   ./gradlew jmh
   ```
 
 _Note:_ This may take a long time to run
 
-#### Run a specific benchmark
+### Run a specific benchmark
   ```bash
   ./gradlew jmh -Djmh.include=<BenchmarkName>
   ```
 
-#### Best Practices
+### Best Practices
 
 - Run benchmarks on a quiet system
 - Close other applications
