@@ -1,9 +1,9 @@
-package test.java.org.salerno.puzzles.array;
+package org.salerno.puzzles.array;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import java.util.Random;
-import org.salerno.puzzles.array.MaxAvgSubarray;
 
 public class MaxAvgSubarrayBenchmark {
     

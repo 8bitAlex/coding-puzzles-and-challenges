@@ -1,8 +1,7 @@
-package jmh.java.org.salerno.puzzles.array;
+package org.salerno.puzzles.array;
 
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
-import org.salerno.puzzles.array.MaxAvgSubarray;
 
 import java.util.concurrent.TimeUnit;
 
