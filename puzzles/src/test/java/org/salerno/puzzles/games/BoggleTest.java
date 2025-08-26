@@ -3,8 +3,8 @@ package org.salerno.puzzles.games;
 import org.junit.jupiter.api.Test;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.HashSet;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -87,16 +87,17 @@ public class BoggleTest {
     /* ---------------------------------- Private Methods ---------------------------------- **/
 
     private static HashSet<String> getLexiconFromFile() {
-        final String path = "resources/AmericanEnglishLexicon.txt";
+        final String resourcePath = "AmericanEnglishLexicon.txt";
         final HashSet<String> result = new HashSet<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
+        try (BufferedReader reader = new BufferedReader(
+                new InputStreamReader(BoggleTest.class.getClassLoader().getResourceAsStream(resourcePath)))) {
             String line = reader.readLine();
             while(line != null) {
                 result.add(line);
                 line = reader.readLine();
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Failed to load lexicon from resource: " + resourcePath, e);
         }
         return result;
     }
