@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'me.champeau.jmh' version '0.7.3'
 }
 
 group 'org.salerno'
@@ -11,13 +12,35 @@ repositories {
 
 dependencies {
     // impl
-    implementation 'com.google.guava:guava:11.0.2'
+    implementation 'com.google.guava:guava:32.0.1-android'
 
     // test impl
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    
+    // JMH for benchmarking
+    jmh 'org.openjdk.jmh:jmh-core:1.37'
+    jmh 'org.openjdk.jmh:jmh-generator-annprocess:1.37'
 }
 
 test {
     useJUnitPlatform()
+}
+
+jmh {
+    warmupIterations = 2
+    iterations = 5
+    fork = 1
+    failOnError = true
+    resultFormat = 'JSON'
+    sourceSets {
+        jmh {
+            java {
+                srcDirs = ['src/jmh/java']
+            }
+            resources {
+                srcDirs = ['src/jmh/resources']
+            }
+        }
+    }
 }

@@ -2,3 +2,4 @@
 /.gradle/
 
 /puzzles/build/
+/benchmark-results/
